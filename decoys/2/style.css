@@ -1,0 +1,39 @@
+:root{--paper:#f4efe6;--ink:#1d1b18;--mute:#8a8378;--a:#d9482b;--b:#2b4a7a;--c:#e8b83a}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;overflow-x:hidden}
+body{background:var(--paper);color:var(--ink);font-family:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;line-height:1.3}
+.paper{position:relative;min-height:100vh;min-height:100svh;overflow:hidden;display:grid;grid-template-rows:auto 1fr auto;padding:clamp(18px,4vw,48px)}
+.paper:before{content:"";position:absolute;inset:clamp(10px,2vw,24px);border:1px solid rgba(29,27,24,.18);pointer-events:none}
+.top,.foot{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:baseline;font-size:.8rem;letter-spacing:.28em;text-transform:uppercase;color:var(--mute);padding:0 clamp(6px,1.5vw,16px)}
+.mark{color:var(--ink);font-size:1rem;letter-spacing:.4em}
+.stage{position:absolute;inset:0;overflow:hidden;z-index:0}
+.sh{position:absolute;display:block;will-change:transform,opacity}
+.sq{width:min(26vmin,220px);aspect-ratio:1;border:1px solid var(--ink)}
+.ci{width:min(26vmin,220px);aspect-ratio:1;border-radius:50%}
+.s1{top:9%;right:8%;border-color:var(--b);animation:spinA 24s linear infinite}
+.s2{top:20%;right:20%;background:var(--a);mix-blend-mode:multiply;opacity:.85;animation:breathe 9s ease-in-out infinite}
+.s3{bottom:12%;left:6%;border-color:var(--a);animation:spinB 32s linear infinite}
+.s4{bottom:20%;left:14%;background:var(--c);mix-blend-mode:multiply;opacity:.8;width:min(16vmin,140px);animation:breathe 11s ease-in-out -4s infinite}
+.s5{top:46%;right:-4%;width:min(34vmin,300px);border-color:var(--ink);opacity:.5;animation:morph 14s ease-in-out infinite}
+.ln{position:absolute;display:block;height:1px;background:var(--ink);transform-origin:left center;opacity:.45;will-change:transform}
+.l1{top:34%;left:0;width:60%;animation:draw 10s ease-in-out infinite}
+.l2{top:68%;right:0;width:55%;transform-origin:right center;animation:draw 13s ease-in-out -5s infinite}
+.l3{top:84%;left:20%;width:40%;animation:draw 8s ease-in-out -2s infinite}
+@keyframes spinA{0%{transform:rotate(0) scale(1)}50%{transform:rotate(180deg) scale(.7)}100%{transform:rotate(360deg) scale(1)}}
+@keyframes spinB{0%{transform:rotate(45deg) scale(.8)}50%{transform:rotate(-90deg) scale(1.2)}100%{transform:rotate(-315deg) scale(.8)}}
+@keyframes breathe{0%,100%{transform:scale(.55) translate3d(0,0,0);opacity:.5}50%{transform:scale(1.1) translate3d(-6%,6%,0);opacity:.9}}
+@keyframes morph{0%,100%{transform:rotate(0) scale(1)}33%{transform:rotate(45deg) scale(.6)}66%{transform:rotate(90deg) scale(1.15)}}
+@keyframes draw{0%{transform:scaleX(0)}45%,60%{transform:scaleX(1)}100%{transform:scaleX(0);}}
+.copy{position:relative;z-index:2;align-self:center;padding:clamp(28px,8vh,80px) clamp(6px,1.5vw,16px)}
+h1{font-weight:300;font-size:clamp(2.4rem,9.5vw,7.4rem);line-height:1.02;letter-spacing:-.02em;max-width:11em;animation:rise 1.4s cubic-bezier(.2,.7,.2,1) both}
+h1 em{font-style:italic;color:var(--a);white-space:nowrap}
+.caret{display:inline-block;width:.05em;height:.8em;margin-left:.08em;background:var(--ink);vertical-align:-.06em;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+@keyframes rise{from{opacity:0;transform:translate3d(0,24px,0)}to{opacity:1;transform:none}}
+.row{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:clamp(24px,5vh,48px);font-size:.85rem;letter-spacing:.24em;text-transform:uppercase;animation:rise 1.4s .3s cubic-bezier(.2,.7,.2,1) both}
+.dots{display:flex;gap:10px}
+.dots b{width:9px;height:9px;border-radius:50%;background:var(--ink);opacity:.15;animation:dot 2.8s ease-in-out infinite}
+.dots b:nth-child(2){animation-delay:.2s}.dots b:nth-child(3){animation-delay:.4s}.dots b:nth-child(4){animation-delay:.6s}.dots b:nth-child(5){animation-delay:.8s}.dots b:nth-child(6){animation-delay:1s}.dots b:nth-child(7){animation-delay:1.2s}
+@keyframes dot{0%,100%{opacity:.15;transform:scale(.8)}40%{opacity:1;transform:scale(1.3);background:var(--a)}}
+@media (max-width:520px){.top,.foot{letter-spacing:.18em;font-size:.7rem}.s5{display:none}h1 em{white-space:normal}}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.ln{transform:none}.caret{opacity:1}}
