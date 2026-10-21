@@ -46,7 +46,6 @@ Before you run the installer:
 2. **A static public IPv4 address.**
 3. **A domain or subdomain pointing to the server:**
    - create an **A record** `your.domain → server IP`;
-   - on Cloudflare, set it to **DNS only** (grey cloud), not proxied;
    - **no AAAA record**, unless it points to this same server. Otherwise Let's Encrypt fails;
    - check that it resolves: `dig +short A your.domain @1.1.1.1` must return the server IP.
 
